@@ -9,7 +9,7 @@ __pycache__/
 #Custom
 test_yaml.yml
 .DS_store
-
+*.swp
 # Distribution / packaging
 .Python
 build/
