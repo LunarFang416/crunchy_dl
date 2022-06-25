@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+#Custom
+test_yaml.yml
+
 # Distribution / packaging
 .Python
 build/
