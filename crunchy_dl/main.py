@@ -31,6 +31,8 @@ except:
 	print("Please ensure all required libraries specified in requirements.txt are available")
 	exit()
 
+__version__ = "0.1.0"
+
 class Logger:
 	def __init__(self, verbose: bool) -> None:
 		self.verbose = verbose
@@ -304,9 +306,14 @@ def destination_path_type(destination: str) -> str:
 
 def argument_parsing(argv: Optional[Sequence[str]]) -> Tuple[argparse.Namespace, List[str, ...]]:
 	parser = argparse.ArgumentParser()
+	parser.add_argument("-v", "--version", help="crunchy_dl version", action="store_true")
 	sub_parsers = parser.add_subparsers(dest="action")
+	print(parser.parse_known_args(argv)[0])
+	if parser.parse_known_args(argv)[0].version:
+		return parser.parse_known_args(argv)	
+	
 	sub_parsers.required = True
-
+	
 	episode_parser = sub_parsers.add_parser('episode', help="Download Single Anime Episode")
 	series_parser = sub_parsers.add_parser('series', help="Download Anime Series")
 	config_parser = sub_parsers.add_parser('config', help="Specify MetaData in separate config file")
@@ -339,6 +346,10 @@ def argument_parsing(argv: Optional[Sequence[str]]) -> Tuple[argparse.Namespace,
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
 	args, yt_dlp_args  = argument_parsing(argv)
+
+	if args.version:
+		print(__version__)
+		return 0
 	
 	if args.action == "config":
 		with open(args.config_file) as f:

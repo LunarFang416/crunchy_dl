@@ -112,4 +112,12 @@ optional arguments:
                         Specify Season of Series
 ```
 
+## Tests
 
+```python
+pytest
+```
+
+## LICENSE
+
+See [LISENCE](https://github.com/LunarFang416/crunchy_dl/blob/master/LICENSE)
